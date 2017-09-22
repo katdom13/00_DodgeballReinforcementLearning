@@ -14,7 +14,7 @@ namespace QLearningAI
         //from env
         private int Speed { get; set; }
         private int Balls { get; set; }
-        private double Playtime { get; set; }
+        private int PlayScore { get; set; }
 
         //private int PlayerScore { get; set; }
 
@@ -38,7 +38,7 @@ namespace QLearningAI
             //get time/score from unity
         }
 
-        public object[] Reset()
+        public int[] Reset()
         {
 
             Speed = 0;  //reset from stored/orig
@@ -46,14 +46,14 @@ namespace QLearningAI
 
             int speed = Speed;
             int balls = Balls;
-            double playtime = Playtime;
+            int playscore = PlayScore;
 
-            object[] state = { speed, balls, playtime };
+            int[] state = { speed, balls, playscore };
 
             return state;
         }
 
-        public bool Step(int action, out object[] S_, out int reward)
+        public bool Step(int action, out int[] S_, out int reward)
         {
             //get player score, score must be within (20, 50) for example
             bool done = false;
@@ -76,9 +76,9 @@ namespace QLearningAI
             //THIS IS THE NEXT STATE S_
             int speed = Speed;
             int balls = Balls;
-            double playtime = Playtime;
+            int playscore = PlayScore;
 
-            S_ = new object[]{ speed, balls, playtime };
+            S_ = new int[]{ speed, balls, playscore };
 
             if (Enumerable.Range(50, 120).Contains(Convert.ToInt32(S_[2])))
             {

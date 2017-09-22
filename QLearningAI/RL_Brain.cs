@@ -12,7 +12,7 @@ namespace QLearningAI
         private double Alpha { get; set; } //learning rate
         private double Gamma { get; set;  } //reward decay
         private double Epsilon { get; set; } //greedy attribute
-        private Dictionary<object[], double[]> Q_Table { get; set; }
+        private Dictionary<int[], double[]> Q_Table { get; set; }
 
         
 
@@ -24,13 +24,13 @@ namespace QLearningAI
 
             Actions = actions;
 
-            Q_Table = new Dictionary<object[], double[]>();
+            Q_Table = new Dictionary<int[], double[]>();
 
         }
         
         private Random rand = new Random();
 
-        public int ChooseAction(object[] speed_ball_state)
+        public int ChooseAction(int[] speed_ball_state)
         {
             int A = 0;
 
@@ -57,7 +57,7 @@ namespace QLearningAI
 
         }
 
-        public void Learn(object[] S, int A, int R, object[] S_)
+        public void Learn(int[] S, int A, int R, int[] S_)
         {
 
             double q_target = 0.0;
@@ -81,7 +81,7 @@ namespace QLearningAI
 
         }
 
-        public void CheckIfStateExists(object[] speed_ball)
+        public void CheckIfStateExists(int[] speed_ball)
         {
             if (Q_Table.ContainsKey(speed_ball) == false)
             {
